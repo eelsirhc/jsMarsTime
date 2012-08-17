@@ -1,6 +1,7 @@
 # MarsTime library
-## Christopher Lee, 2011-
-## Ashima Research
+
+Christopher Lee, Ashima Research, 2011-
+
 
 This package implements the Mars24 algorithm in javascript based on the Allison and McEwan(2000) paper. Details can be found at http://www.giss.nasa.gov/tools/mars24/ .
 
