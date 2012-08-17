@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+<!--
+    HTML for a simple Marstime web application 
+    CL 2011-04-11
+-->
+
+<head>
+<meta charset="UTF-8">
+
+<title>Marstime Example</title>
+
+<script type="text/javascript" src="marstime.js"></script>
+<script type="text/javascript" src="tests.js"></script>
+
+<link href="marstime.css" rel='stylesheet' type='text/css'>
+<style>
+li.true { color: green;}
+li.false { color:red;}
+li.nofunction { color:blue;}
+</style>
+
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, height=device-height" />
+<script type="text/javascript">
+function print(text){
+	if (document.getElementById) {
+         document.getElementById('writeHere').innerHTML = text; }
+	else if (document.layers) {
+	 document.layers.writeHere.document.write(text);
+	 document.layers.writeHere.document.close(); }
+}
+function test(name){
+	try{
+		var value = eval("test_"+name+"();");
+		var text="Failed";
+		if(value) {text="Passed";}
+		return "<li class='"+value.toString()+"'>"+name+" : "+text+"</li>\n";
+		}
+		catch(error){
+		return "<li class='nofunction'>"+name+" : No Function</li>\n";
+		}
+		
+}
+function run_tests()
+{
+	var result="";
+	result+="<h1>Testing</h1>";
+	result+= "<ol>";
+	result+=test("west_to_east");
+	result+=test("east_to_west");
+	result+=test("j2000_epoch");
+	result+=test("julian");
+	result+=test("j2000_offset_tt");
+	result+=test("Mars_Mean_Anomaly");
+	result+=test("FMS_Angle");
+	result+=test("alpha_perturbs");
+	result+=test("equation_of_center");
+	result+=test("Mars_Ls");
+	result+=test("equation_of_time");
+	result+=test("j2000_from_Mars_Solar_Date");
+	result+=test("j2000_ott_from_Mars_Solar_Date");
+	result+=test("Clancy_Year");
+	result+=test("Mars24_Year");
+	result+=test("Coordinated_Mars_Time");
+	
+	result+=test("Local_Mean_Solar_Time");
+	result+=test("Local_True_Solar_Time");
+	result+=test("subsolar_longitude");
+	result+=test("solar_declination");
+	result+=test("heliocentric_distance");
+	result+=test("heliocentric_longitude");
+	result+=test("heliocentric_latitude");
+	result+=test("hourangle");
+	result+=test("solar_zenith");
+	result+=test("solar_zenith_and_elevation");
+	result+=test("solar_azimuth");
+	result+=test("on_mills");
+	result+=test("midnight_crossing");
+	result+=test("spirit_landing");
+	
+	result+= "</ol>";	
+	print(result);
+//	print(5-2+3);
+}	
+
+window.onload=run_tests;
+</script>
+</head>
+<body>
+<div id="writeHere">
+</div>
+</body>
+
+</html>
