@@ -24,6 +24,27 @@ function hms(t)
     return pad(h,2)+":"+pad(m,2)+":"+pad(s,2);
 }
 
+function dhms(t)
+{
+    //format a time in hours to hh:mm:ss
+    var t2 = (t+24.) % 24;
+    var h=Math.floor(t2);
+    var d = Math.floor(t/24.)
+    var textd="";
+    if (d >= 2)
+    {
+    	textd=d.toString()+" days, "
+	}else if(d >= 1)
+	{
+		textd=d.toString()+" day, "
+	}
+		
+    var rh=h;
+    var m=Math.floor((t2-Math.floor(h))*60.);
+    var s=Math.floor(((t2-h)*60-m)*60);
+    return textd + pad(rh,2)+":"+pad(m,2)+":"+pad(s,2);
+}
+
 function ms(t)
 {
     //format a time in seconds to mm:ss 
@@ -64,7 +85,7 @@ function timeNow()
     v["utcdate"]=d.getUTCFullYear()+"-"+pad(d.getUTCMonth()+1,2)+"-"+d.getUTCDate();
     v["utctime"]=pad(d.getUTCHours(),2)+":"+pad(d.getUTCMinutes(),2)+":"+pad(d.getUTCSeconds(),2);    
     v["utcmonth"] = getMonthString(d.getUTCMonth());
-    v["localdate"]=d.getFullYear()+"-"+pad(d.getMonth()+1,2)+"-"+d.getDate();
+    v["localdate"]=d.getFullYear()+"-"+pad(d.getMonth()+1,2)+"-"+pad(d.getDate(),2);
     v["localtime"]=pad(d.getHours(),2)+":"+pad(d.getMinutes(),2)+":"+pad(d.getSeconds(),2)+" "+tz;
     v["localmonth"] = getMonthString(d.getMonth());
     v["jdut"]=julian(d.getTime());
@@ -83,13 +104,13 @@ function timeNow()
     var spirit_lon = 184.5215;
     var opp_land = 1073137591000.+86400e3*22;
     var opp_lon = 0.0;
-    var cur_land = 1344174593000. ;//1344256260000;
-    var cur_lon = east_to_west(137.440247);// 222.5981 ; //137. + 42/60. ; //0.0;
+    var cur_land = 1344174593000. ; //1344231060000 - 56466000; //midnight before landing.
+    var cur_lon = east_to_west(137.440247); //222.5781	; //5981;  // + 42/60. ; //0.0;
 
     v["spirit"] = startFrom(spirit_land, spirit_lon,d,v,(-41/60.-53./3600.),1);
     v["opportunity"] = startFrom(opp_land, opp_lon,d,v,(-61/60.-6/3600.),1);    
     v["curiosity"] = startFrom(cur_land, cur_lon,d,v,(0.0,0.0));    
-
+	
     v["lightdistance"] = ms(heliocentric_distance(v.j2000_ott)*499.005215);
     return v;
 }
