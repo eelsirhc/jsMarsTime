@@ -47,10 +47,14 @@ function run_tests()
 	var result="";
 	result+="<h1>Testing</h1>";
 	result+= "<ol>";
+	result+=test("should_pass");
+	result+=test("should_fail");
 	result+=test("west_to_east");
 	result+=test("east_to_west");
 	result+=test("j2000_epoch");
 	result+=test("julian");
+	result+=test("utc_to_tt_offset");
+	result+=test("julian_tt");
 	result+=test("j2000_offset_tt");
 	result+=test("Mars_Mean_Anomaly");
 	result+=test("FMS_Angle");

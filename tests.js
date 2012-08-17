@@ -12,6 +12,18 @@ function assert(current,label,value)
 	return current;
 }
 
+function test_should_pass(){
+	var test = true;
+	test = assert(test,"should be true",true);
+	return test;
+}
+
+function test_should_fail(){
+	var test = true;
+	test = assert(test,"should be false",test == false);
+	return !test;
+}
+
 function test_west_to_east()
 {	
 	var test = true;
@@ -45,8 +57,11 @@ function test_utc_to_tt_offset(){
     t = j2000_epoch() - 5*365.
     tf=assert(tf,"utc_to_tt_offset2",within_error(utc_to_tt_offset(t), 61.184, 1e-3))
 
-    t=0
+    t=1
     tf=assert(tf,"utc_to_tt_offset3",within_error(utc_to_tt_offset(t), 0, 1e-3))
+
+    t=j2000_epoch() + 365*9.+3*366.+190; //~July 2012
+    tf=assert(tf,"utc_to_tt_offset3",within_error(utc_to_tt_offset(t), 67.184, 1e-3))
 	return tf;
 
 }
@@ -55,7 +70,7 @@ function test_julian_tt(){
    var tf=true;
     tf=assert(tf,"test_julian_tt1",julian_tt(0) == 0);
     v = julian_tt(j2000_epoch())-j2000_epoch();
-    tf=assert(tf,"test_julian_tt2",(v>64.183/86400.)&(v<64.185/86400.));
+    tf=assert(tf,"test_julian_tt2",within_error(v,64.184/86400.,1e-5));
     return tf;
 }
 function test_j2000_offset_tt(){
