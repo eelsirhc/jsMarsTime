@@ -479,3 +479,93 @@ function test_spirit_landing(){
 return tf;
 }
 
+function TestA()
+{
+    mil = 947116800000;
+    longitude=0.;
+    latitude=0.;
+    document.write("<ol class='testA'>");
+    document.write("<li>mil = "+mil+"</li>");
+    document.write("<li>longitude = "+longitude+"</li>");
+    document.write("<li>latitude = "+latitude+"</li>");
+    Test(mil, longitude, latitude);
+    document.write("</ol>");
+}
+
+function TestB()
+{
+    mil = 1073137591000;
+    longitude=184.702 ;
+    latitude = -14.640;
+    document.write("<ol class='testB'>");
+    document.write("<li>mil = "+mil+"</li>");
+    document.write("<li>longitude = "+longitude+"</li>");
+    document.write("<li>latitude = "+latitude+"</li>");
+    Test(mil, longitude, latitude);
+    document.write("</ol>");
+}
+
+function Test(mil, longitude, latitude)
+{    
+    document.write("<li>a1 = "+mil+   "</li>");
+    
+    var jdut=julian(mil);
+    document.write("<li>a2 = "+jdut+   "</li>");
+    
+    var tt_utc = utc_to_tt_offset(jdut);
+    document.write("<li>a3 = "+tt_utc+   "</li>");
+    
+    var jday_tt = julian_tt(jdut);
+    document.write( "<li>a5 = "+ jday_tt+   "</li>");
+    
+    var j2000_ott = j2000_offset_tt(jday_tt);
+    document.write( "<li>a6 = "+ j2000_ott+   "</li>");
+
+    var m = Mars_Mean_Anomaly(j2000_ott);
+    document.write( "<li>b1 = "+ m+   "</li>");
+
+    var alpha = FMS_Angle(j2000_ott);
+    document.write( "<li>b2 = "+ alpha+   "</li>");
+
+    var pbs = alpha_perturbs(j2000_ott);
+    document.write( "<li>b3 = "+ pbs+   "</li>");
+
+    var v_m = equation_of_center(j2000_ott);
+    document.write( "<li>b4 = "+ v_m+   "</li>");
+
+    var ls = Mars_Ls(j2000_ott);
+    document.write( "<li>b5 = "+ ls +   "</li>");
+    
+    var eot = equation_of_time(j2000_ott);
+    document.write( "<li>c1 = "+ eot+   "</li>");
+    
+    var mtc = Coordinated_Mars_Time(j2000_ott);
+    document.write( "<li>c2 = "+ mtc+   "</li>");
+
+    var lmst = Local_Mean_Solar_Time(longitude,j2000_ott);
+    document.write( "<li>c3 = "+ lmst+   "</li>");
+
+    var ltst = Local_True_Solar_Time(longitude,j2000_ott);
+    document.write( "<li>c4 = "+ ltst+   "</li>");
+
+    var subsol = subsolar_longitude(j2000_ott);
+    document.write( "<li>c5 = "+ subsol+   "</li>");
+
+    var dec = solar_declination(ls);
+    document.write( "<li>d1 = "+ dec+   "</li>");
+
+    var rm = heliocentric_distance(j2000_ott);
+    document.write( "<li>d2 = "+ rm+   "</li>");
+
+    var im = heliocentric_longitude(j2000_ott);
+    document.write( "<li>d3 = "+ im+   "</li>");
+
+    var bm = heliocentric_latitude(j2000_ott);
+    document.write( "<li>d4 = "+ bm+   "</li>");
+
+    var sz = solar_zenith(longitude, latitude,j2000_ott);
+    document.write( "<li>d5 = "+ sz+   "</li>");
+
+    var sz = solar_azimuth(longitude, latitude,j2000_ott);
+    document.write( "<li>d6 = "+ sz+   "</li>");
+}
