@@ -61,7 +61,7 @@ function startFrom(mil_land, longitude, d, vin, delta, sol0)
     s2 =s1-Math.floor(s1);
     a["sol"]=Math.floor(s1);
     var t=Local_Mean_Solar_Time(longitude, vin.j2000_ott)+delta;
-    
+
     //t=t;
     while (t>24)
     {
@@ -109,7 +109,7 @@ function timeNow()
 
     v["spirit"] = startFrom(spirit_land, spirit_lon,d,v,(-41/60.-53./3600.),1);
     v["opportunity"] = startFrom(opp_land, opp_lon,d,v,(-61/60.-6/3600.),1);    
-    v["curiosity"] = startFrom(cur_land, cur_lon,d,v,(0.0,0.0));    
+    v["curiosity"] = startFrom(cur_land, cur_lon,d,v,(0.0),0.);    
 	
     v["lightdistance"] = ms(heliocentric_distance(v.j2000_ott)*499.005215);
     return v;
