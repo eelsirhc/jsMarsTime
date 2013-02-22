@@ -1,6 +1,6 @@
 /*Copyright (c) 2011, Christopher Lee eelsirhc@gmail.com
  All rights reserved.
-Mars Calendar and orbit calculation based on Allison and McEwan (2000), Allison (1997)
+Mars Calendar and orbit calculation based on Allison and McEwen (2000), Allison (1997)
 
 Allison, M., and M. McEwen 2000. A post-Pathfinder evaluation of aerocentric solar coordinates with improved timing recipes for Mars seasonal/diurnal climate studies. Planet. Space Sci. 48, 215-235
 
