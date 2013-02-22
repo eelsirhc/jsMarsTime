@@ -1,4 +1,4 @@
-# MarsTime library
+### MarsTime library
 
 Christopher Lee, Ashima Research, 2011-
 
@@ -6,6 +6,14 @@ This package implements the Mars24 algorithm in javascript based on the [Allison
 	
 The library is available under the Modified BSD license. Please retain the references to the algorithm papers by [Allison and McEwan (2000)] and [Allison (1997)]. Publications using the algorithm should reference those papers where appropriate.
 
+
+###License
+[3 clause BSD license (a.k.a modified BSD license)](http://ashimagroup.net/os/license/bsd-3clause)
+
+
+###Tags
+[javascript](http://ashimagroup.net/os/tag/javascript)
+[mars](http://ashimagroup.net/os/tag/mars)
 
 ###References
 [Allison and McEwan (2000)] :  A post-Pathfinder evaluation of areocentric solar coordinates with improved timing recipes for Mars seasonal/diurnal climate studies. Planet. Space Sci. 48, 215-235.
